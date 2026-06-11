@@ -85,11 +85,11 @@ while True:
             id_counter += 1
             assigned_id = id_counter
             print(f"System assigned ID: {assigned_id}")
-            name = input("Enter Employee Name: ").strip()
-            role = input("Enter Employee Role: ").strip()
+            name = input("Enter employee name: ").strip()
+            role = input("Enter employee role: ").strip()
             while True:
                 try:
-                    salary = float(input("Enter Starting Salary: "))
+                    salary = float(input("Enter starting salary: "))
                     if salary > 0:
                         break
                     print("Salary must be greater than 0.")
@@ -101,13 +101,13 @@ while True:
 
         elif menu == 3:
             if len(employees) == 0:
-                print("Database is empty. Nothing to search.")
+                print("The employee database is currently empty.")
             else:
                 target = int(input("Enter Employee ID to search: "))
                 index = binary_search(employees, target)
                 if index != -1:
                     match = employees[index]
-                    print(f"RECORD FOUND at array index position {index}:")
+                    print(f"Found at array index {index}:")
                     match.display_info()
                 else:
                     print(f"Record with ID {target} could not be located.")
@@ -118,7 +118,7 @@ while True:
             if index != -1:
                 emp = employees[index]
                 attr = input("Which attribute? (name / role / salary): ").strip().lower()
-                while attr != "name" and attr != "role" and attr != "salary":
+                while attr not in ("name", "role", "salary"):
                     print("Attribute not found.")
                     attr = input("Which attribute? (name / role / salary): ").strip().lower()
                 new_val = input(f"Enter new value for {attr}: ").strip()
@@ -129,7 +129,7 @@ while True:
                 print("Employee not found.")
         
         elif menu == 5:
-            target = int(input("Enter Employee ID to delete: "))
+            target = int(input("Enter employee ID to delete: "))
             index = binary_search(employees, target)
             choice = input("Are you sure? (Y/N): ").upper()
             if index != -1 and choice == "Y":
@@ -149,4 +149,5 @@ while True:
     except ValueError:
         print("Please ensure you enter numeric numbers for selections and IDs.")
     except Exception as e:
+        print("ERROR:", e)
         print("ERROR:", e)
