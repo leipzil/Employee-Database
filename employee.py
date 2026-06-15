@@ -6,7 +6,7 @@ class Employee:
         self.name = name
         self.role = role
         self.__salary = salary
-        self.status = status  # "active" or "inactive"
+        self.status = status
 
     def display_info(self):
         print(f"""ID: {self.id}
@@ -189,7 +189,7 @@ while True:
             if index != -1 and employees[index].status == "active":
                 choice = input("Are you sure? (Y/N): ").upper()
                 if choice == "Y":
-                    employees[index].status = "inactive"  # Mark inactive instead of deleting
+                    employees[index].status = "inactive"
                     save_data(employees, id_counter)
                     print("Employee record removed.")
                 else:
@@ -213,6 +213,6 @@ while True:
             print("Invalid option.")
 
     except ValueError:
-        print("Please ensure you enter numeric numbers for selections and IDs.")
+        print("Please ensure you enter numbers for selections and IDs.")
     except Exception as e:
         print("ERROR:", e)
